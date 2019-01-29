@@ -4,15 +4,21 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
-    var torchLevel = 0.0
+  
     var vibrationTimer : Timer!
+    var soundTimer : Timer!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        startTorch()
+//        startTorch()
         
-        vibrationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startVibration), userInfo: nil, repeats: true)
+//        vibrationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startVibration), userInfo: nil, repeats: true)
+        
+        soundTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(startSound), userInfo: nil, repeats: true)
+        
+        startSound()
         
         
     }
@@ -47,6 +53,10 @@ class ViewController: UIViewController {
         } else {
             print("Torch is not available")
         }
+    }
+    
+    @objc func startSound(){
+        AudioServicesPlaySystemSound(1005)
     }
    
 
