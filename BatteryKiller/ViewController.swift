@@ -8,6 +8,7 @@ class ViewController: UIViewController {
     var vibrationTimer : Timer!
     var soundTimer : Timer!
     
+    let colorArray = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +58,18 @@ class ViewController: UIViewController {
     
     @objc func startSound(){
         AudioServicesPlaySystemSound(1005)
+    
+    func startFlashBackground(){
+        UIView.animate(withDuration: 0.1, delay: 0.0, options:[UIView.AnimationOptions.repeat, UIView.AnimationOptions.autoreverse], animations: {
+            self.view.backgroundColor = UIColor.yellow
+            //self.view.backgroundColor = UIColor.green
+            self.view.backgroundColor = UIColor.blue
+            //self.view.backgroundColor = UIColor.red
+        }, completion: nil)
     }
    
+    
+    
 
     
     
