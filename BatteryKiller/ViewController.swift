@@ -1,55 +1,55 @@
-//
-//  ViewController.swift
-//  BatteryKiller
-//
-//  Created by Niklas Lindell on 2019-01-29.
-//  Copyright © 2019 Niklas Lindell. All rights reserved.
-//
-
 import UIKit
 import AudioToolbox
 import AVFoundation
 
 class ViewController: UIViewController {
+    
+    var torchLevel = 0.0
+    var vibrationTimer : Timer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+       
+        startTorch()
         
-        startTorch(on: true)
+        vibrationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startVibration), userInfo: nil, repeats: true)
+        
+        
     }
     
     
     // Function to start vibration
     
-    func startVibration(){
-        
-        
+    @objc func startVibration(){
+            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-    //func to start flashlight/torch
-    func startTorch(on: Bool){
+//    func to start flashlight/torch
+    func startTorch(){
+        var repeatLight = true
         guard let device = AVCaptureDevice.default(for: .video) else { return }
-        
         if device.hasTorch {
             do {
-                try device.lockForConfiguration()
-                
-                if on == true {
-                    device.torchMode = .on
-                } else {
-                    device.torchMode = .off
+                while true {
+                    try device.lockForConfiguration()
+                    if repeatLight == true {
+                        device.torchMode = .on
+                        repeatLight = false
+                    }
+                    if repeatLight == false {
+                        device.torchMode = .off
+                        repeatLight = true
+                    }
                 }
-                
-                device.unlockForConfiguration()
             } catch {
                 print("Torch could not be used")
             }
         } else {
             print("Torch is not available")
         }
-        
     }
+   
+
     
     
     
