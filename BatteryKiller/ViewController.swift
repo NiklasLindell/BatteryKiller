@@ -4,35 +4,34 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
-  
+    
     var vibrationTimer : Timer!
     var soundTimer : Timer!
+    var torchTimer : Timer!
     
-    let colorArray = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow]
-
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-//        startTorch()
         
-//        vibrationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startVibration), userInfo: nil, repeats: true)
-        
+
+        torchTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startTorch), userInfo: nil, repeats: true)
+
+        vibrationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startVibration), userInfo: nil, repeats: true)
+
         soundTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(startSound), userInfo: nil, repeats: true)
-        
-        startSound()
-        
-        
+
+        startFlashBackground()
+
     }
     
     
     // Function to start vibration
     
     @objc func startVibration(){
-            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
     }
     
-//    func to start flashlight/torch
-    func startTorch(){
+    //    func to start flashlight/torch
+    @objc func startTorch(){
         var repeatLight = true
         guard let device = AVCaptureDevice.default(for: .video) else { return }
         if device.hasTorch {
@@ -58,6 +57,8 @@ class ViewController: UIViewController {
     
     @objc func startSound(){
         AudioServicesPlaySystemSound(1005)
+        
+    }
     
     func startFlashBackground(){
         UIView.animate(withDuration: 0.1, delay: 0.0, options:[UIView.AnimationOptions.repeat, UIView.AnimationOptions.autoreverse], animations: {
@@ -67,15 +68,5 @@ class ViewController: UIViewController {
             //self.view.backgroundColor = UIColor.red
         }, completion: nil)
     }
-   
-    
-    
-
-    
-    
-    
-    
-
-
 }
 
