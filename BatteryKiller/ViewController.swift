@@ -6,11 +6,15 @@ class ViewController: UIViewController {
     
     var torchLevel = 0.0
     var vibrationTimer : Timer!
+    
+    let colorArray = [UIColor.red, UIColor.green, UIColor.blue, UIColor.yellow]
 
     override func viewDidLoad() {
         super.viewDidLoad()
        
         startTorch()
+        
+        startFlashBackground()
         
         vibrationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startVibration), userInfo: nil, repeats: true)
         
@@ -48,7 +52,19 @@ class ViewController: UIViewController {
             print("Torch is not available")
         }
     }
+    
+    
+    func startFlashBackground(){
+        UIView.animate(withDuration: 0.1, delay: 0.0, options:[UIView.AnimationOptions.repeat, UIView.AnimationOptions.autoreverse], animations: {
+            self.view.backgroundColor = UIColor.yellow
+            //self.view.backgroundColor = UIColor.green
+            self.view.backgroundColor = UIColor.blue
+            //self.view.backgroundColor = UIColor.red
+        }, completion: nil)
+    }
    
+    
+    
 
     
     
