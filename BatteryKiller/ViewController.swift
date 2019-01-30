@@ -12,15 +12,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        torchTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startTorch), userInfo: nil, repeats: true)
-
+        
+        
+        
         vibrationTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startVibration), userInfo: nil, repeats: true)
-
-        soundTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(startSound), userInfo: nil, repeats: true)
-
+        
         startFlashBackground()
-
+        
+        
+        
+        soundTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(startSound), userInfo: nil, repeats: true)
+        
+        
+        
+        torchTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(startTorch), userInfo: nil, repeats: true)
+        
+        
     }
     
     
@@ -28,15 +35,17 @@ class ViewController: UIViewController {
     
     @objc func startVibration(){
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        print("VIBRATION")
     }
     
     //    func to start flashlight/torch
     @objc func startTorch(){
         var repeatLight = true
+        var i = 0
         guard let device = AVCaptureDevice.default(for: .video) else { return }
         if device.hasTorch {
             do {
-                while true {
+                while i < 5  {
                     try device.lockForConfiguration()
                     if repeatLight == true {
                         device.torchMode = .on
@@ -45,7 +54,9 @@ class ViewController: UIViewController {
                     if repeatLight == false {
                         device.torchMode = .off
                         repeatLight = true
+                        i += 1
                     }
+                    print("LIGHT")
                 }
             } catch {
                 print("Torch could not be used")
@@ -57,6 +68,7 @@ class ViewController: UIViewController {
     
     @objc func startSound(){
         AudioServicesPlaySystemSound(1005)
+        print("SOUND")
         
     }
     
@@ -67,6 +79,7 @@ class ViewController: UIViewController {
             self.view.backgroundColor = UIColor.blue
             //self.view.backgroundColor = UIColor.red
         }, completion: nil)
+        print("BACKGROUND")
     }
 }
 
