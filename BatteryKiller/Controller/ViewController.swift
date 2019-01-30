@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     var soundTimer : Timer!
     var torchTimer : Timer!
     
+    var gifs = getGifs()
+    
     let battery = UIDevice.current.batteryLevel
     var batteryShow : Timer!
     
@@ -25,6 +27,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        gifs.getData()
+        
         
         UIScreen.main.brightness = CGFloat(1.0)
         

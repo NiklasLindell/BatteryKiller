@@ -14,6 +14,7 @@
 		7B8DB65822006FA40072083C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8DB65622006FA40072083C /* LaunchScreen.storyboard */; };
 		7B8DB66322006FA40072083C /* BatteryKillerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8DB66222006FA40072083C /* BatteryKillerTests.swift */; };
 		7B8DB66E22006FA40072083C /* BatteryKillerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8DB66D22006FA40072083C /* BatteryKillerUITests.swift */; };
+		EB63BA582201B05300E645C0 /* gifModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB63BA572201B05300E645C0 /* gifModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		7B8DB66922006FA40072083C /* BatteryKillerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BatteryKillerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8DB66D22006FA40072083C /* BatteryKillerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryKillerUITests.swift; sourceTree = "<group>"; };
 		7B8DB66F22006FA40072083C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB63BA572201B05300E645C0 /* gifModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,11 +99,10 @@
 		7B8DB64C22006FA30072083C /* BatteryKiller */ = {
 			isa = PBXGroup;
 			children = (
-				7B8DB64D22006FA30072083C /* AppDelegate.swift */,
-				7B8DB64F22006FA30072083C /* ViewController.swift */,
-				7B8DB65122006FA30072083C /* Main.storyboard */,
+				EB63BA562201AFF400E645C0 /* View */,
+				EB63BA552201AFED00E645C0 /* Model */,
+				EB63BA542201AFDF00E645C0 /* Controller */,
 				7B8DB65422006FA40072083C /* Assets.xcassets */,
-				7B8DB65622006FA40072083C /* LaunchScreen.storyboard */,
 				7B8DB65922006FA40072083C /* Info.plist */,
 			);
 			path = BatteryKiller;
@@ -123,6 +124,32 @@
 				7B8DB66F22006FA40072083C /* Info.plist */,
 			);
 			path = BatteryKillerUITests;
+			sourceTree = "<group>";
+		};
+		EB63BA542201AFDF00E645C0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7B8DB64D22006FA30072083C /* AppDelegate.swift */,
+				7B8DB64F22006FA30072083C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EB63BA552201AFED00E645C0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB63BA572201B05300E645C0 /* gifModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EB63BA562201AFF400E645C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B8DB65122006FA30072083C /* Main.storyboard */,
+				7B8DB65622006FA40072083C /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B8DB65022006FA30072083C /* ViewController.swift in Sources */,
+				EB63BA582201B05300E645C0 /* gifModel.swift in Sources */,
 				7B8DB64E22006FA30072083C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
