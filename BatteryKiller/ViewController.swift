@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     var vibrationTimer : Timer!
     var soundTimer : Timer!
     var torchTimer : Timer!
+    @objc var getdata : Timer!
     
     let battery = UIDevice.current.batteryLevel
     var batteryShow : Timer!
@@ -41,6 +42,7 @@ class ViewController: UIViewController {
         //soundTimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(startSound), userInfo: nil, repeats: true)
         torchTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(startTorch), userInfo: nil, repeats: true)
         batteryShow = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(startBattery), userInfo: nil, repeats: true)
+        startGetData()
         
     }
     
@@ -120,6 +122,35 @@ class ViewController: UIViewController {
         case .charging, .full:
             print("charging or full")
         }
+    }
+    
+    func startGetData(){
+        let url = URL(string: "https://jsonplaceholder.typicode.com/users")
+        
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if let response = response{
+                print(response)
+            }
+            if let data = data{
+                print(data)
+                
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                    
+                    DispatchQueue.main.async {
+                        self.textView.text = "\(json as! NSArray)"
+                        self.textView.isScrollEnabled = false
+                    }
+                    
+        
+                }
+                catch{
+                    print(error)
+                    
+                }
+            }
+            }.resume()
     }
 }
 
