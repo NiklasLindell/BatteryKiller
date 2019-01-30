@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     var torchTimer : Timer!
     @objc var getdata : Timer!
     
+    var gifs = getGifs()
+    
     let battery = UIDevice.current.batteryLevel
     var batteryShow : Timer!
     
@@ -28,6 +30,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         UIScreen.main.brightness = CGFloat(1.0)
+        
+        gifs.getData()
         
         
         UIDevice.current.isBatteryMonitoringEnabled = true
